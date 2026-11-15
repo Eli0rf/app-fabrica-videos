@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Base === */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #04040e;
+  color: #e0e0f0;
+  overflow-x: hidden;
+}
+
+/* === Scrollbar dark === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0e20;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a44;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a66;
+}
+
+/* === Componentes reutilizáveis === */
+@layer components {
+  /* Card padrão dark */
+  .dark-card {
+    @apply bg-dark-800/80 border border-dark-600/50 rounded-xl backdrop-blur-sm;
+  }
+
+  /* Texto de destaque */
+  .text-glow {
+    @apply drop-shadow-[0_0_10px_currentColor];
+  }
+
+  /* Esteira de produção */
+  .conveyor-belt {
+    background: repeating-linear-gradient(
+      90deg,
+      #1a1a32 0px,
+      #1a1a32 20px,
+      #141428 20px,
+      #141428 40px
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conveyor-belt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(0, 255, 157, 0.05) 38px,
+      rgba(0, 255, 157, 0.05) 40px
+    );
+    animation: conveyorMove 1.5s linear infinite;
+  }
+
+  /* Status dot */
+  .status-dot {
+    @apply inline-block w-3 h-3 rounded-full;
+  }
+
+  .status-dot.processing {
+    @apply bg-accent-yellow animate-pulse;
+    box-shadow: 0 0 8px rgba(255, 214, 10, 0.6);
+  }
+
+  .status-dot.ready {
+    @apply bg-accent-green;
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
+  }
+
+  .status-dot.error {
+    @apply bg-accent-red;
+    box-shadow: 0 0 8px rgba(255, 51, 102, 0.6);
+  }
+
+  .status-dot.queued {
+    @apply bg-dark-300;
+  }
+}
+
+/* === Animação da esteira === */
+@keyframes conveyorMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(40px); }
+}
+
+/* === Gradiente de fundo da fábrica === */
+.factory-bg {
+  background:
+    radial-gradient(ellipse at top, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+    #04040e;
+}
+
+/* === Efeito de brilho pulsante === */
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* === Alerta vermelho === */
+.alert-red {
+  @apply border-accent-red/50 bg-accent-red/10 text-accent-red;
+  animation: glowPulse 1s ease-in-out infinite;
+}

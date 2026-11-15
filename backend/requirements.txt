@@ -1,0 +1,32 @@
+# ===== Fábrica de Vídeos Dark - Backend Dependencies =====
+# FastAPI + Uvicorn (servidor assíncrono)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Pydantic (modelos de dados)
+pydantic==2.10.4
+
+# Ingestão de Dados Financeiros
+yfinance>=1.8.0
+pandas==2.2.3
+requests==2.32.3
+
+# Geração de Voz (gratuita via Edge TTS)
+edge-tts>=7.3.1
+
+# Renderização de Vídeo
+moviepy==2.1.2
+Pillow>=9.2.0,<11.0
+numpy==2.2.1
+
+# YouTube Data API v3
+google-api-python-client==2.157.0
+google-auth==2.37.0
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+
+# Utilitários
+aiofiles==24.1.0
+python-dotenv==1.0.1
+loguru==0.7.3
